@@ -1,122 +1,106 @@
 # 🎨 CycleGAN Face-Sketch Converter
 
-Convert face photos to sketches and vice versa using CycleGAN.
+Convert face photos to sketches and vice versa using CycleGAN deep learning.
 
-## 🚀 Deployment on Hugging Face Spaces [![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/cooper0914/CycleGAN_Streamlit)
+## 🌐 Live Demo
 
-### Step 1: Prepare Your Models
+[![Open in Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/cooper0914/CycleGAN_Streamlit)
 
-After training, run this cell in your notebook:
+![Demo](img-to-sketch.png)
+---
+![Demo](sketch-to-img.png)
+*Photo ↔ Sketch conversion in action*
 
-```python
-# Run this in your training notebook
-export_for_huggingface(checkpoint_epoch=100)  # Replace 100 with your best epoch
-```
+## ✨ Features
 
-This creates two files in `deployment_models/`:
-- `photo_to_sketch.pth` (~44 MB)
-- `sketch_to_photo.pth` (~44 MB)
+- **Bidirectional Conversion**: Photo → Sketch and Sketch → Photo
+- **Auto-Detection**: Automatically identifies input type
+- **Camera Support**: Take photos directly in the app
+- **Instant Download**: Save your converted images
+- **Responsive UI**: Works on desktop and mobile
+- **Fast Inference**: 3-5 seconds on CPU, <1 second on GPU
 
-### Step 2: Create Hugging Face Space
+## 🚀 Quick Start
 
-1. Go to [Hugging Face Spaces](https://huggingface.co/spaces)
-2. Click **"Create new Space"**
-3. Configure:
-   - **Space name**: `cyclegan-face-sketch`
-   - **License**: Choose appropriate license
-   - **Select SDK**: **Streamlit**
-   - **Space hardware**: CPU Basic (free) or GPU for faster inference
-
-### Step 3: Upload Files
-
-Upload these files to your Space:
-
-```
-your-space/
-├── app.py                    # Streamlit application
-├── requirements.txt          # Python dependencies
-├── photo_to_sketch.pth       # Model file (Photo → Sketch)
-├── sketch_to_photo.pth       # Model file (Sketch → Photo)
-└── README.md                 # This file (optional)
-```
-
-### Step 4: Your Space will Auto-Build
-
-Hugging Face will automatically:
-1. Install dependencies from `requirements.txt`
-2. Run your Streamlit app
-3. Provide a public URL
-
-## 📦 File Sizes
-
-- `photo_to_sketch.pth`: ~44 MB
-- `sketch_to_photo.pth`: ~44 MB
-- **Total**: ~88 MB (well within free tier limits)
-
-## 🎯 Features
-
-- ✅ Photo to Sketch conversion
-- ✅ Sketch to Photo conversion  
-- ✅ Auto-detection of input type
-- ✅ Camera input support
-- ✅ Download results
-- ✅ Responsive UI
-
-## 💡 Usage Tips
-
-### For Best Results:
-- Use clear, front-facing photos
-- Ensure good lighting
-- Images are automatically resized to 256x256
-
-### Hardware:
-- **CPU Basic (Free)**: ~3-5 seconds per image
-- **GPU T4 (Paid)**: ~0.5 seconds per image
-
-## 🔧 Local Testing
-
-Before deploying, test locally:
+### Local Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/cyclegan-face-sketch.git
+cd cyclegan-face-sketch
+
 # Install dependencies
 pip install -r requirements.txt
 
-# Run Streamlit app
+# Run the app
 streamlit run app.py
 ```
 
-Then open http://localhost:8501
+Open your browser to `http://localhost:8501`
 
-## 📊 Model Details
+### Usage Tips
+
+- Use clear, front-facing photos for best results
+- Ensure good lighting in your images
+- Images are automatically resized to 256×256 pixels
+
+## 🧠 Model Details
 
 - **Architecture**: CycleGAN with ResNet-based generators
-- **Input Size**: 256x256 RGB images
-- **Training**: Unpaired face-sketch dataset
+- **Input Size**: 256×256 RGB images
+- **Training Dataset**: Unpaired face-sketch pairs
+- **Model Size**: ~44 MB per direction (~88 MB total)
 - **Loss Functions**: 
   - Adversarial loss (LSGAN)
   - Cycle consistency loss
   - Identity loss
 
-## 🐛 Troubleshooting
+### Performance
 
-### Space doesn't start:
-- Check all files are uploaded correctly
-- Verify file names match exactly in `app.py`
-- Check Space logs for errors
+| Hardware | Inference Time |
+|----------|---------------|
+| CPU Basic | ~3-5 seconds |
+| GPU T4 | ~0.5 seconds |
 
-### Out of memory:
-- Use CPU Basic hardware
-- Models are optimized for CPU inference
+## 🚢 Deployment (Optional)
 
-### Slow inference:
-- Upgrade to GPU hardware in Space settings
-- Or use batch processing
+### Deploy to Hugging Face Spaces
 
-## 📝 License
+**Step 1: Export Your Models**
 
-[Your License Here]
+After training, run in your notebook:
+
+```python
+export_for_huggingface(checkpoint_epoch=100)  # Use your best epoch
+```
+
+This creates `photo_to_sketch.pth` and `sketch_to_photo.pth` in `deployment_models/`.
+
+**Step 2: Create a Space**
+
+1. Go to [Hugging Face Spaces](https://huggingface.co/spaces)
+2. Click **"Create new Space"**
+3. Choose **Streamlit** SDK
+4. Select hardware (CPU Basic is free)
+
+**Step 3: Upload Files**
+
+```
+your-space/
+├── app.py
+├── requirements.txt
+├── photo_to_sketch.pth
+├── sketch_to_photo.pth
+└── README.md
+```
+
+Your Space will automatically build and deploy!
 
 ## 🙏 Acknowledgments
 
-- CycleGAN paper: [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/abs/1703.10593)
-- Person Face Sketches dataset: [Kaggle](https://www.kaggle.com/datasets/almightyj/person-face-sketches)
+- **CycleGAN Paper**: Zhu, J.-Y., Park, T., Isola, P., & Efros, A. A. (2017). [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/abs/1703.10593)
+- **Dataset**: [Person Face Sketches Dataset](https://www.kaggle.com/datasets/almightyj/person-face-sketches) on Kaggle
+
+---
+
+**Made with ❤️ using PyTorch and Streamlit**
