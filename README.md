@@ -2,7 +2,7 @@
 
 Convert face photos to sketches and vice versa using CycleGAN.
 
-## 🚀 Deployment on Hugging Face Spaces
+## 🚀 Deployment on Hugging Face Spaces [![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/cooper0914/CycleGAN_Streamlit)
 
 ### Step 1: Prepare Your Models
 
